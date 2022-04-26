@@ -1,12 +1,29 @@
 <template>
     <div>
-        <button>Load Posts</button>
+        <button @click="getPosts">Load Posts</button>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
-        name: 'PistList'
+        name: 'PostList',
+        data () {
+            return {
+                posts: [],
+            }
+        },
+        methods: {
+            getPosts () {
+                axios.get ('https://jsonplaceholder.typicode.com/posts')
+                .then ((response) => {
+                    console.log (response.data);
+                })
+                .catch ((error) => {
+                    console.log (error);
+                })
+            }
+        }
     }
 </script>
 
